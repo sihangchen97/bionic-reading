@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Bionic Reader",
+  "version": "0.1.0",
+  "description": "Bionic reading for any page: bold the leading half of each word to speed reading. Toggle with Alt+B.",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "commands": {
+    "toggle-bionic": {
+      "suggested_key": {
+        "default": "Alt+B",
+        "mac": "Option+B"
+      },
+      "description": "Toggle bionic bolding on the current page"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Bionic Reader",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "vendor/bionic.js",
+        "vendor/extract.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

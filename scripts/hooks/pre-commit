@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Pre-commit hook: re-sync src/ -> chrome-extension/vendor/ and refuse the
+# commit if the generic layer has drifted or leaks browser APIs.
+# Stage the regenerated vendor so the commit always carries fresh outputs.
+# Install once:  git config core.hooksPath scripts/hooks
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+"$ROOT/scripts/sync.sh"
+# stage exactly the files sync.sh manages — not the whole vendor/ directory,
+# so a stray locally-added file there is not swept into the commit
+git -C "$ROOT" add chrome-extension/vendor/bionic.js chrome-extension/vendor/extract.js

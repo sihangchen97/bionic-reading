@@ -1,0 +1,17 @@
+{
+  "name": "bionic-reader",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "description": "Bionic reading for any page: bold the leading half of each word to speed reading (Chrome extension).",
+  "license": "MIT",
+  "scripts": {
+    "test": "bash scripts/sync.sh --check && node --test tests/*.test.js",
+    "sync": "bash scripts/sync.sh"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}

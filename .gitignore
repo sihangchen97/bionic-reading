@@ -1,0 +1,4 @@
+# local dev deps (jsdom is a test-only dep, not bundled)
+node_modules/
+# editor / OS noise
+.DS_Store
